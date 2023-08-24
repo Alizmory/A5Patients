@@ -1,0 +1,36 @@
+﻿@model A1Patients.Models.PatientTreatment
+
+@{
+     ViewData["Title"] = "Patient Details " + ViewData["FullName"] + " diagnosed with " + ViewData["DiagnosisName"];
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <h4>PatientTreatment</h4>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DatePrescribed)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.Raw(Model.DatePrescribed.ToString("dd MMMM yyyy HH:mm"))
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.TextAreaFor(model => model.Comments, new { rows = 3 })
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Treatment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Treatment.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PatientTreatmentId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

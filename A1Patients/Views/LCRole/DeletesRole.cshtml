@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+@model DeletesRole
+
+@{
+    ViewData["Title"] = "Are you SURE to delete this role??? " + " " + ViewBag.RoleName + " ";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h2>USERS IN ROLE</h2>
+
+@for (int x = 0; x < Model.Users.Count; x++)
+{
+    <li>
+        <label>@Model.Users[x]</label>
+    </li>
+}
+<form method="post" action="DeleteRole">
+    <input type="hidden" name="RoleID" value="@Model.RoleId" />
+    <button type="submit" value="Delete" name="deleteRole" class="btn btn-primary mx-sm-3 mb-2">DELETE CONFIRMED</button>
+    <button type="submit" value="Cancel" name="deleteRole" class="btn btn-primary mx-sm-3 mb-2">CANCEL DELETED</button>
+</form>
+<div>
+    <a asp-action="Index">Return to Role List!</a>
+</div>

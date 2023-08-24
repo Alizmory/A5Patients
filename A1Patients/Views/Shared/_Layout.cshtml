@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LizPatients</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a href="@Url.Action("Index", "Home")">
+                <img src="~/css/logo.jpeg" alt="logo" height="100px"/>
+                </a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LizPatients</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="Index">Patients</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Country" asp-action="Index">Countries</a>
+                        </li>
+                        @* show User/Role Maintenance menu only if user is in administrators role *@
+                        @*@if (User.IsInRole("administrators"))*@
+                            <li class="dropdown">
+                                <a class="dropdown-toggle nav-link text-dark" data-toggle="dropdown" href="#">
+                                    <span class="caret"></span>Security</a>
+                        <ul class="dropdown-menu">
+                                    <li>
+                                        <a class="text-dark" href="#">User Maintenance</a>
+                                    </li>
+                                    <li>
+                                        <a class="text-dark" asp-controller="LCRole" asp-action="Index">
+                                            Role Maintenance
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> 
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            <!-- LYLP 1b Ensure the variable message from TempData displays, bold & red, on _layout before the View’s page -->
+            <div class="font-weight-bold text-danger">@TempData["message"]</div>
+            @RenderBody()
+                        </main>
+
+    </div>
+    
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <!-- LYLP 1a Put your name & section in the _layout footer -->
+            &copy; 2022 - <a href="acuellarsalazar2918@conestogac.on.ca">Liz Cuellar</a> - Section 1
+            <div class="float-right">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

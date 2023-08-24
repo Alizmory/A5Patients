@@ -1,0 +1,49 @@
+﻿@model IEnumerable<A1Patients.Models.PatientTreatment>
+
+@{
+    ViewData["Title"] = "Treatment for patient " + ViewData["FullName"] + " diagnosed with " + ViewData["DiagnosisName"];
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DatePrescribed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Treatment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Raw(item.DatePrescribed.ToString("dd MMMM yyyy HH:mm"))
+                </td>
+                <td>
+                    @Html.TextAreaFor(model => item.Comments, new { rows = 3 })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Treatment.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PatientTreatmentId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.PatientTreatmentId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PatientTreatmentId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

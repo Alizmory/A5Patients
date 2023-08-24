@@ -1,0 +1,74 @@
+﻿@model A1Patients.Models.PatientTreatment
+
+ @{ViewData["Title"] = "Edit treatment " + ViewData["FullName"] + " diagnosed with " + ViewData["DiagnosisName"];
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>PatientTreatment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PatientTreatmentId" />
+                <input type="hidden" asp-for="PatientTreatmentId" />
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="TreatmentId" class="control-label"></label>
+                        <label asp-for="TreatmentId" class="control-label"></label>
+                        <select asp-for="TreatmentId" class="form-control" asp-items="ViewBag.TreatmentId"></select>
+                        <select asp-for="TreatmentId" class="form-control" asp-items="ViewBag.TreatmentId"></select>
+                        <span asp-validation-for="TreatmentId" class="text-danger"></span>
+                        <span asp-validation-for="TreatmentId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="DatePrescribed" class="control-label"></label>
+                        <label asp-for="DatePrescribed" class="control-label"></label>
+                        @*<input readonly asp-for="DatePrescribed" type="datetime" class="form-control" asp-items="ViewBag.DatePrescribed" asp-format="{dd MMMM yyyy HH:mm}"/>*@
+                        <input asp-for="DatePrescribed" class="form-control" />
+                        <input readonly asp-for="DatePrescribed" type="datetime" class="form-control" value="@ViewBag.DatePrescribed" />
+                        <span asp-validation-for="DatePrescribed" class="text-danger"></span>
+                        <span asp-validation-for="DatePrescribed" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="Comments" class="control-label"></label>
+                        <label asp-for="Comments" class="control-label"></label>
+                        <input asp-for="Comments" class="form-control" />
+                        <textarea asp-for="Comments" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Comments" class="text-danger"></span>
+                        <span asp-validation-for="Comments" class="text-danger"></span>
+                    </div>
+                </div>
+                <input type="hidden" asp-for="PatientDiagnosisId" />
+                <div class="form-group">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </div>
+            </form>
+        </form>
+    </div>
+</div>
+
+<div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

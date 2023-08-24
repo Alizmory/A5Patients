@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+@model List<UsersRole>
+@{
+    ViewData["Title"] = "UsersRole " + " " + ViewBag.RoleName + " ";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form class="form-inline" asp-action="AddUserRole">
+    <div class="form-group" asp-validation-summary="All">
+        <label for="UsersNotInRole">This User NOT EXISTS in roles!: </label>
+        <input type="hidden" name="RoleID" value="@ViewBag.RoleID" />
+        <select asp-items="ViewBag.UsersNotInRole" name="UserID"></select>
+        <button type="submit" value="AddUserRole" class="btn btn-primary mx-sm-3 mb-2">ADD NEW ROLE!</button>
+    </div>
+</form>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <b>Username</b>
+                </th>
+                <th>
+                    <b>Email</b>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => user.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => user.Email)
+                    </td>
+                    <td>
+                        <a asp-action="RemoveUserRole" asp-route-UserID="@user.UserId" asp-route-RoleID="@ViewBag.RoleID" asp-route-RoleName="@ViewBag.RoleName">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Return to Main Role List!</a>
+</div>
